@@ -1,8 +1,10 @@
-package com.example.android.shotebabajimi;
+package com.example.android.shotebabajimi.results;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.android.shotebabajimi.R;
 
 public class ResultsActivity extends AppCompatActivity {
 
