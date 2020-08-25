@@ -78,9 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
         android:text="@string/car_color_year"
         android:textColor="@android:color/black"
+        android:textSize="@dimen/list_item_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/country_label_text_view" />
 
@@ -102,8 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/gender_label"
-        android:textSize="@dimen/list_item_text_size"
         android:textColor="@android:color/black"
+        android:textSize="@dimen/list_item_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_color_year_key" />
 
@@ -135,8 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:textSize="@dimen/list_item_text_size"
         android:layout_marginTop="8dp"
+        android:textSize="@dimen/list_item_text_size"
         app:layout_constraintStart_toEndOf="@+id/job_label_text_view"
         app:layout_constraintTop_toBottomOf="@+id/gender_value_text_view"
         tools:text="Staff Accountant III" />
@@ -146,9 +146,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/bio_label"
         android:textColor="@android:color/black"
         android:textSize="@dimen/list_item_text_size"
-        android:text="@string/bio_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/job_label_text_view" />
 
@@ -157,11 +157,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textSize="@dimen/list_item_text_size"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="@dimen/list_item_text_size"
         app:layout_constraintStart_toEndOf="@+id/bio_label_text_view"
         app:layout_constraintTop_toBottomOf="@+id/job_value_text_view"
         tools:text="@string/lipsum_text" />
