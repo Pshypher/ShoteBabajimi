@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShoteBabajimi</string>
+    <string name="range">Date Range:</string>
+    <string name="gender">Gender:</string>
+    <string name="countries">Countries:</string>
+    <string name="color">Color:</string>
+</resources>
