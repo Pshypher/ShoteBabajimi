@@ -12,4 +12,6 @@
     <string name="job_title">job Title</string>
     <string name="bio_label">Bio</string>
     <string name="lipsum_text">Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.</string>
+    <string name="filter_title">My Filters</string>
+    <string name="no_filters">Empty list of predefined filters</string>
 </resources>

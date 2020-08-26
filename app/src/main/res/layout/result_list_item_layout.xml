@@ -1,168 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/list_item_horizontal_margin">
+    android:layout_margin="@dimen/list_item_margin"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
 
-    <TextView
-        android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/car_owner_name"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/list_item_padding">
 
-    <TextView
-        android:id="@+id/full_names_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/name_label"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Scot Hainning" />
+        <TextView
+            android:id="@+id/nameLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/car_owner_name"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/email_label_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/email_field"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_label" />
+        <TextView
+            android:id="@+id/namesValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/nameLabelTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Scot Hainning" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/email_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/full_names_text_view"
-        tools:text="shainning0@so-net.ne.jp" />
+        <TextView
+            android:id="@+id/emailLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/email_field"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameLabelTextView" />
 
-    <TextView
-        android:id="@+id/country_label_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/country"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_label_text_view" />
+        <TextView
+            android:id="@+id/emailValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/emailLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/namesValueTextView"
+            tools:text="shainning0@so-net.ne.jp" />
 
-    <TextView
-        android:id="@+id/country_value_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/country_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:text="Thailand" />
+        <TextView
+            android:id="@+id/countryLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/country"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabelTextView" />
 
-    <TextView
-        android:id="@+id/car_color_year_key"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/car_color_year"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_label_text_view" />
+        <TextView
+            android:id="@+id/countryValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/countryLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/emailValueTextView"
+            tools:text="Thailand" />
 
-    <TextView
-        android:id="@+id/car_color_year_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/car_color_year_key"
-        app:layout_constraintTop_toBottomOf="@+id/country_value_text_view"
-        tools:text="Lincoln, Maroon, 1996" />
+        <TextView
+            android:id="@+id/carColorYearLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/car_color_year"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryLabelTextView" />
 
-    <TextView
-        android:id="@+id/gender_label_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/gender_label"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_color_year_key" />
+        <TextView
+            android:id="@+id/carColorYearValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/carColorYearLabel"
+            app:layout_constraintTop_toBottomOf="@+id/countryValueTextView"
+            tools:text="Lincoln, Maroon, 1996" />
 
-    <TextView
-        android:id="@+id/gender_value_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/gender_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/car_color_year_value"
-        tools:text="Male" />
+        <TextView
+            android:id="@+id/genderLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/gender_label"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carColorYearLabel" />
 
-    <TextView
-        android:id="@+id/job_label_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/job_title"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender_label_text_view" />
+        <TextView
+            android:id="@+id/genderValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/genderLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/carColorYearValue"
+            tools:text="Male" />
 
-    <TextView
-        android:id="@+id/job_value_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/job_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/gender_value_text_view"
-        tools:text="Staff Accountant III" />
+        <TextView
+            android:id="@+id/jobTitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/job_title"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderLabelTextView" />
 
-    <TextView
-        android:id="@+id/bio_label_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/bio_label"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_label_text_view" />
+        <TextView
+            android:id="@+id/jobTitleValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/jobTitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/genderValueTextView"
+            tools:text="Staff Accountant III" />
 
-    <TextView
-        android:id="@+id/bio_value_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textSize="@dimen/list_item_text_size"
-        app:layout_constraintStart_toEndOf="@+id/bio_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/job_value_text_view"
-        tools:text="@string/lipsum_text" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/bioLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/bio_label"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobTitleLabel" />
+
+        <TextView
+            android:id="@+id/bioValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="@dimen/list_item_text_size"
+            app:layout_constraintStart_toEndOf="@+id/bioLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/jobTitleValue"
+            tools:text="@string/lipsum_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
