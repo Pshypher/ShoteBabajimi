@@ -28,6 +28,16 @@ public class Filter implements Parcelable {
     @Expose
     public List<String> colors = null;
 
+    public Filter(int id, int startYear, int endYear, String gender, List<String> countries,
+                  List<String> colors) {
+        this.id = id;
+        this.startYear = startYear;
+        this.endYear = endYear;
+        this.gender = gender;
+        this.countries = countries;
+        this.colors = colors;
+    }
+
     private Filter(Parcel in) {
         id = in.readInt();
         startYear = in.readInt();

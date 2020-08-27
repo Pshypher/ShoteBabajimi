@@ -35,7 +35,7 @@ public class FileUtils {
 
         List<CarOwner> carOwners = new ArrayList<CarOwner>();
 
-        InputStream inputStream = context.getResources().openRawResource(R.raw.car_ownsers_data);
+        InputStream inputStream = context.getResources().openRawResource(R.raw.ehealth);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(inputStream, Charset.forName("UTF-8"))
         );

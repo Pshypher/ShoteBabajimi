@@ -95,6 +95,7 @@ public class FilterActivity extends AppCompatActivity implements
                 LinearLayoutManager.VERTICAL, false);
         adapter = new FilterAdapter(FilterAdapter.DIFF_CALLBACK, this);
         filtersRecyclerView.setLayoutManager(layoutManager);
+        filtersRecyclerView.setClipToPadding(true);
         filtersRecyclerView.setAdapter(adapter);
 
         if (!isConnected()) return;

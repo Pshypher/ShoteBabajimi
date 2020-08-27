@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.example.android.shotebabajimi.filter.model.Filter;
 import com.example.android.shotebabajimi.results.model.CarOwner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -14,7 +13,7 @@ import io.reactivex.Observable;
 public class FilterUtils {
 
     /**
-     * Removes car owners whose properties do not match with the filter criteria
+     * Yields an RxObservable of vehicle owners matching the applied filter
      * @param filter the applied filter
      * @param ownersObservable list of vehicle owners
      */
@@ -27,24 +26,22 @@ public class FilterUtils {
                                 carOwner -> test(filter, carOwner)));
     }
 
-    private static Boolean test(Filter filter, CarOwner carOwner) {
-        return isWithinDuration(filter, carOwner) &&
-                sameGender(filter, carOwner) &&
+    public static Boolean test(Filter filter, CarOwner carOwner) {
+        return isWithinDuration(filter.startYear, filter.endYear, carOwner.getModelYear()) &&
+                sameGender(filter.gender, carOwner.getGender()) &&
                 oneOf(filter.countries, carOwner.getCountry()) &&
                 oneOf(filter.colors, carOwner.getCarColor());
     }
 
-    private static Boolean isWithinDuration(Filter filter, CarOwner carOwner) {
-        return carOwner.getModelYear() >= filter.startYear &&
-                carOwner.getModelYear() <= filter.endYear;
+    public static Boolean isWithinDuration(int startYear, int endYear, int year) {
+        return year >= startYear && year <= endYear;
     }
 
-    private static Boolean sameGender(Filter filter, CarOwner carOwner) {
-        return TextUtils.isEmpty(filter.gender) ||
-                carOwner.getGender().equalsIgnoreCase(filter.gender);
+    public static Boolean sameGender(String filterGender, String ownerGender) {
+        return filterGender.equals("") || ownerGender.equalsIgnoreCase(filterGender);
     }
 
-    private static Boolean oneOf(List<String> collection, String value) {
-        return collection.isEmpty() || collection.contains(value);
+    public static Boolean oneOf(List<String> collection, String value) {
+        return  collection.size() == 0 || collection.contains(value);
     }
 }
