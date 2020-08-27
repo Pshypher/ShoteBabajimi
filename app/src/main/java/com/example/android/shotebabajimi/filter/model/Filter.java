@@ -1,10 +1,13 @@
 package com.example.android.shotebabajimi.filter.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Filter {
+public class Filter implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -24,4 +27,40 @@ public class Filter {
     @SerializedName("colors")
     @Expose
     public List<String> colors = null;
+
+    private Filter(Parcel in) {
+        id = in.readInt();
+        startYear = in.readInt();
+        endYear = in.readInt();
+        gender = in.readString();
+        countries = in.createStringArrayList();
+        colors = in.createStringArrayList();
+    }
+
+    public static final Creator<Filter> CREATOR = new Creator<Filter>() {
+        @Override
+        public Filter createFromParcel(Parcel in) {
+            return new Filter(in);
+        }
+
+        @Override
+        public Filter[] newArray(int size) {
+            return new Filter[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(startYear);
+        dest.writeInt(endYear);
+        dest.writeString(gender);
+        dest.writeStringList(countries);
+        dest.writeStringList(colors);
+    }
 }

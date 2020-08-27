@@ -14,4 +14,6 @@
     <string name="lipsum_text">Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.</string>
     <string name="filter_title">My Filters</string>
     <string name="no_filters">Empty list of predefined filters</string>
+    <string name="car_owners">Car Owners</string>
+    <string name="no_results">Car owner(s) matching criteria not found</string>
 </resources>
