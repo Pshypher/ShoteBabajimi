@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".results.ResultsActivity"></activity>
+        <activity android:name=".results.ResultsActivity"
+            android:parentActivityName=".filter.FilterActivity">
+
+            <!-- Parent activity meta-data to supprt 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.shotebabajimi.filter.FilterActivity" />
+        </activity>
         <activity android:name=".filter.FilterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

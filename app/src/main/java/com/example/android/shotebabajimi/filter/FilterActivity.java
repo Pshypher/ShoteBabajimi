@@ -1,6 +1,7 @@
 package com.example.android.shotebabajimi.filter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.example.android.shotebabajimi.results.ResultsActivity;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 import static android.view.View.GONE;
@@ -30,13 +32,13 @@ import static android.view.View.VISIBLE;
 public class FilterActivity extends AppCompatActivity implements
         FilterAdapter.OnItemClickListener {
 
-    private FiltersViewModel viewModel;
-    private FilterAdapter adapter;
-    private RecyclerView filtersRecyclerView;
-    private ProgressBar loadingIndicator;
-    private TextView emptyFiltersTextView;
+    private FiltersViewModel _viewModel;
+    private FilterAdapter _adapter;
+    private RecyclerView _filtersRecyclerView;
+    private ProgressBar _loadingIndicator;
+    private TextView _emptyFiltersTextView;
 
-    private Disposable disposable;
+    private CompositeDisposable _compositeDisposable;
 
     private static final String TAG = "FilterActivity";
 
@@ -45,72 +47,73 @@ public class FilterActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        filtersRecyclerView = (RecyclerView) findViewById(R.id.filtersRecyclerView);
-        loadingIndicator = (ProgressBar) findViewById(R.id.loadingIndicator);
-        emptyFiltersTextView = (TextView) findViewById(R.id.emptyFilterTextView);
-        viewModel = new ViewModelProvider(this).get(FiltersViewModel.class);
-        initializeAdapter();
+        setContentView(R.layout.activity_filters);
+        _filtersRecyclerView = (RecyclerView) findViewById(R.id.filtersRecyclerView);
+        _loadingIndicator = (ProgressBar) findViewById(R.id.loadingIndicator);
+        _emptyFiltersTextView = (TextView) findViewById(R.id.emptyFilterTextView);
+        _viewModel = new ViewModelProvider(this).get(FiltersViewModel.class);
+        _compositeDisposable = new CompositeDisposable();
+        init();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        viewModel.filters
+        _viewModel.filters
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PagedList<Filter>>() {
             @Override
             public void onSubscribe(Disposable d) {
-                disposable = d;
+                _compositeDisposable.add(d);
             }
 
             @Override
             public void onNext(PagedList<Filter> filterPagedList) {
-                adapter.submitList(filterPagedList);
-                if (adapter.getItemCount() > 0) revealFilterList();
-                else displayEmptyFiltersView();
+                _adapter.submitList(filterPagedList);
+                if (_adapter.getItemCount() > 0) filtersFeedback();
+                else emptyFiltersFeedback();
             }
 
             @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, e.getMessage());
-
-            }
+            public void onError(Throwable e) { Log.d(TAG, e.getMessage()); }
 
             @Override
-            public void onComplete() {
-
-            }
+            public void onComplete() { }
         });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (disposable != null) disposable.dispose();
+        _compositeDisposable.clear();
     }
 
-    private void initializeAdapter() {
+    private void init() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView titleTextView = (TextView) toolbar.findViewById(R.id.toolbarTitle);
+        titleTextView.setText(R.string.filter_title);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
-        adapter = new FilterAdapter(FilterAdapter.DIFF_CALLBACK, this);
-        filtersRecyclerView.setLayoutManager(layoutManager);
-        filtersRecyclerView.setClipToPadding(true);
-        filtersRecyclerView.setAdapter(adapter);
+        _adapter = new FilterAdapter(FilterAdapter.DIFF_CALLBACK, this, _compositeDisposable);
+        _filtersRecyclerView.setLayoutManager(layoutManager);
+        _filtersRecyclerView.setClipToPadding(true);
+        _filtersRecyclerView.setAdapter(_adapter);
 
         if (!isConnected()) return;
     }
 
-    public void revealFilterList() {
-        filtersRecyclerView.setVisibility(VISIBLE);
-        loadingIndicator.setVisibility(GONE);
-        emptyFiltersTextView.setVisibility(GONE);
+    public void filtersFeedback() {
+        _filtersRecyclerView.setVisibility(VISIBLE);
+        _loadingIndicator.setVisibility(GONE);
+        _emptyFiltersTextView.setVisibility(GONE);
     }
 
-    public void displayEmptyFiltersView() {
-        filtersRecyclerView.setVisibility(GONE);
-        loadingIndicator.setVisibility(GONE);
-        emptyFiltersTextView.setVisibility(VISIBLE);
+    public void emptyFiltersFeedback() {
+        _filtersRecyclerView.setVisibility(GONE);
+        _loadingIndicator.setVisibility(GONE);
+        _emptyFiltersTextView.setVisibility(VISIBLE);
     }
 
     private boolean isConnected() {

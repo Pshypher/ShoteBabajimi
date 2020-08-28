@@ -1,10 +1,64 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- ToolBar-->
+    <style name="ToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetRight">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!-- ToolBar title -->
+    <style name="ToolbarTextStyle">
+        <item name="fontFamily">@font/barlow_medium</item>
+        <item name="fontStyle">normal</item>
+        <item name="lineHeight">19sp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/toolbarTextColor</item>
+    </style>
+
+    <!-- Car owner property key TextView style -->
+    <style name="PropertyLabelStyle">
+        <item name="fontFamily">@font/barlow_regular</item>
+        <item name="fontStyle">normal</item>
+        <item name="lineHeight">10sp</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorTextCaption</item>
+    </style>
+
+    <!-- Car owner property value TextView style -->
+    <style name="PropertyValueStyle">
+        <item name="fontFamily">@font/barlow_regular</item>
+        <item name="fontStyle">normal</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- List item CardView appearance -->
+    <style name="ListItemCardViewStyle">
+        <item name="android:layout_marginStart">@dimen/list_item_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/list_item_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/list_item_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/list_item_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/half_list_item_vertical_margin_size</item>
+        <item name="android:layout_marginBottom">@dimen/half_list_item_vertical_margin_size</item>
+        <item name="android:background">@color/listItemBackgroundColor</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">10dp</item>
+    </style>
 </resources>

@@ -11,66 +11,116 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.shotebabajimi.R;
 import com.example.android.shotebabajimi.results.model.CarOwner;
+import com.example.android.shotebabajimi.utils.ColorUtils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHolder> {
+public class ResultsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<CarOwner> mCarOwners;
+    private List<Object> _items;
+
+    private static final int COUNT = 0;
+    private static final int RESULTS = 1;
+
+    private static final String TAG = "ResultsAdapter";
 
     public ResultsAdapter() {
-        mCarOwners = new ArrayList<CarOwner>();
+        _items = new ArrayList<Object>();
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.result_list_item_layout, parent, false);
-        return new ViewHolder(itemView);
+
+        View itemView;
+        RecyclerView.ViewHolder holder = null;
+        switch (viewType) {
+            case COUNT:
+                itemView = inflater.inflate(R.layout.result_count_item_layout, parent, false);
+                holder = new CountViewHolder(itemView);
+                break;
+            case RESULTS:
+                itemView = inflater.inflate(R.layout.result_list_item_layout, parent, false);
+                holder = new ResultViewHolder(itemView);
+                break;
+            default:
+                throw new IllegalArgumentException("View type: " + viewType + " not found");
+        }
+        return holder;
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CarOwner owner = mCarOwners.get(position);
-        holder.bind(owner);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        switch (holder.getItemViewType()) {
+            case RESULTS:
+                CarOwner owner = (CarOwner) _items.get(position);
+                ((ResultViewHolder) holder).bind(owner);
+                break;
+            case COUNT:
+                Integer count = (Integer) _items.get(position);
+                ((CountViewHolder) holder).bind(count);
+                break;
+            default:
+                throw new IllegalArgumentException("No such view type " + holder.getItemViewType());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        if (mCarOwners == null) return 0;
-        return mCarOwners.size();
+        if (_items == null) return 0;
+        return _items.size();
     }
 
-    public void addVehicleOwners(List<CarOwner> owners) {
-        mCarOwners.addAll(owners);
+    @Override
+    public int getItemViewType(int position) {
+        if (_items.get(position) instanceof Integer) {
+            return COUNT;
+        } else if (_items.get(position) instanceof CarOwner) {
+            return RESULTS;
+        }
+        return super.getItemViewType(position);
+    }
+
+    public void add(List<Object> results) {
+        _items.addAll(results);
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ResultViewHolder extends RecyclerView.ViewHolder {
 
         private TextView namesTextView;
         private TextView emailTextView;
         private TextView countryTextView;
-        private TextView carColorYearTextView;
+        private TextView modelTextView;
+        private TextView colorTextView;
+        private View colorDrawable;
+        private TextView yearTextView;
         private TextView genderTextView;
         private TextView jobTitleTextView;
         private TextView bioTextView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            namesTextView = (TextView) itemView.findViewById(R.id.namesValueTextView);
-            emailTextView = (TextView) itemView.findViewById(R.id.emailValueTextView);
-            countryTextView = (TextView) itemView.findViewById(R.id.countryValueTextView);
-            carColorYearTextView = (TextView) itemView.findViewById(R.id.carColorYearValue);
-            genderTextView = (TextView) itemView.findViewById(R.id.genderValueTextView);
-            jobTitleTextView = (TextView) itemView.findViewById(R.id.jobTitleValue);
-            bioTextView = (TextView) itemView.findViewById(R.id.bioValueTextView);
+            namesTextView = (TextView) itemView.findViewById(R.id.namesTextView);
+            emailTextView = (TextView) itemView.findViewById(R.id.emailTextView);
+            countryTextView = (TextView) itemView.findViewById(R.id.countryTextView);
+            modelTextView = (TextView) itemView.findViewById(R.id.modelTextView);
+            colorTextView = (TextView) itemView.findViewById(R.id.colorTextView);
+            colorDrawable = itemView.findViewById(R.id.colorDrawable);
+            yearTextView = (TextView) itemView.findViewById(R.id.yearTextView);
+            genderTextView = (TextView) itemView.findViewById(R.id.genderTextView);
+            jobTitleTextView = (TextView) itemView.findViewById(R.id.jobTitleTextView);
+            bioTextView = (TextView) itemView.findViewById(R.id.bioTextView);
         }
 
         public void bind(CarOwner owner) {
@@ -78,11 +128,32 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
                     owner.getFirstName(), owner.getLastName()));
             emailTextView.setText(owner.getEmail());
             countryTextView.setText(owner.getCountry());
-            carColorYearTextView.setText(String.format(Locale.getDefault(), "%s, %s, %s",
-                    owner.getCarModel(), owner.getCarColor(), owner.getModelYear()));
+            modelTextView.setText(owner.getCarModel());
+            colorTextView.setText(owner.getCarColor());
+            ColorUtils.setBackgroundColor(
+                    ColorUtils.getColorResource(owner.getCarColor()), colorDrawable);
+            yearTextView.setText(String.format(Locale.getDefault(),
+                    "%d", owner.getModelYear()));
             genderTextView.setText(owner.getGender());
             jobTitleTextView.setText(owner.getJobTitle());
             bioTextView.setText(owner.getBio());
+        }
+    }
+
+    public static class CountViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView resultsCountTextView;
+
+        public CountViewHolder(@NonNull View itemView) {
+            super(itemView);
+            resultsCountTextView = itemView.findViewById(R.id.countTextView);
+        }
+
+        public void bind(Integer count) {
+            Context ctxt = resultsCountTextView.getContext();
+            DecimalFormat formatter = new DecimalFormat("###,###");
+            String output = formatter.format(count);
+            resultsCountTextView.setText(ctxt.getString(R.string.results_list_count, output));
         }
     }
 }

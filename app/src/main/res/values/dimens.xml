@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="list_item_margin">8dp</dimen>
+    <dimen name="list_item_vertical_margin">24dp</dimen>
+    <dimen name="half_list_item_vertical_margin_size">12dp</dimen>
     <dimen name="list_item_padding">8dp</dimen>
     <dimen name="list_item_text_size">14sp</dimen>
     <dimen name="activity_margin">8dp</dimen>
+    <dimen name="property_value_margin">8dp</dimen>
+    <dimen name="list_item_horizontal_margin">10dp</dimen>
 </resources>

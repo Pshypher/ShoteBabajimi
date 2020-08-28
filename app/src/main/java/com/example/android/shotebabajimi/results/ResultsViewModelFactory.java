@@ -1,4 +1,4 @@
-package com.example.android.shotebabajimi.results.model;
+package com.example.android.shotebabajimi.results;
 
 import android.app.Application;
 
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android.shotebabajimi.filter.model.Filter;
-import com.example.android.shotebabajimi.results.ResultsViewModel;
 
 public class ResultsViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
