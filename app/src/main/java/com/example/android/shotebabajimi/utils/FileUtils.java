@@ -43,12 +43,10 @@ public class FileUtils {
 
         try {
             String line = reader.readLine();
-            int count = 1;
             while (line != null) {
                 line = reader.readLine();
-                count++;
                 if (line == null) break;
-                CarOwner owner = parse(line, count);
+                CarOwner owner = parse(line);
                 carOwners.add(owner);
             }
         } catch (IOException e) {
@@ -58,7 +56,7 @@ public class FileUtils {
         return carOwners;
     }
 
-    private static CarOwner parse(String line, int count) {
+    private static CarOwner parse(String line) {
 
         Cursor cursor = next(0, line);
         String id = cursor.data;

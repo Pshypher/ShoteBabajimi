@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".results.ResultsActivity">
+
+    tools:context=".filter.FilterActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
     <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/resultsRecyclerView"
+            android:id="@+id/filtersRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            tools:listitem="@layout/result_list_item_layout" />
+            tools:listitem="@layout/filter_list_item_layout" />
 
         <ProgressBar
             android:id="@+id/loadingIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/missingFileTextView"
+            android:id="@+id/emptyFilterTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawableTop="@drawable/ic_spreadsheet"
-            android:text="@string/no_results"
+            android:drawableTop="@drawable/ic_filter"
+            android:text="@string/no_filters"
             android:textAppearance="@style/PropertyValueStyle"
             android:textStyle="bold|italic"
             android:visibility="gone" />
     </FrameLayout>
+
 </LinearLayout>

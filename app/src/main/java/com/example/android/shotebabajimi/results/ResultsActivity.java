@@ -1,6 +1,8 @@
 package com.example.android.shotebabajimi.results;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,7 +18,6 @@ import com.example.android.shotebabajimi.R;
 import com.example.android.shotebabajimi.filter.model.Filter;
 
 import com.example.android.shotebabajimi.results.model.CarOwner;
-import com.example.android.shotebabajimi.results.model.ResultsViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,8 @@ public class ResultsActivity extends AppCompatActivity  {
 
     private Disposable _disposable;
 
+    private Filter _filter;
+
     private static final String FILTER_EXTRAS_KEY = "filter_key";
     private static final String TAG = "ResultsActivity";
 
@@ -42,13 +46,11 @@ public class ResultsActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        init();
         Bundle extras = getIntent().getExtras();
-        Filter data = null ;
         if (extras != null && extras.containsKey(FILTER_EXTRAS_KEY)) {
-            data = extras.getParcelable(FILTER_EXTRAS_KEY);
+            _filter = extras.getParcelable(FILTER_EXTRAS_KEY);
         }
-        setupViewModel(data);
+        init();
     }
 
     @Override
@@ -59,10 +61,12 @@ public class ResultsActivity extends AppCompatActivity  {
         }
     }
 
-    private void setupViewModel(final Filter filter) {
-        List<CarOwner> selectedCarOwners = new ArrayList<CarOwner>();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        List<Object> results = new ArrayList<Object>();
         ResultsViewModel viewModel = new ViewModelProvider(this,
-                new ResultsViewModelFactory(getApplication(), filter)).get(ResultsViewModel.class);
+                new ResultsViewModelFactory(getApplication(), _filter)).get(ResultsViewModel.class);
         viewModel.getSelectedCarOwners()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CarOwner>() {
@@ -73,7 +77,7 @@ public class ResultsActivity extends AppCompatActivity  {
 
                     @Override
                     public void onNext(CarOwner carOwner) {
-                        selectedCarOwners.add(carOwner);
+                        results.add(carOwner);
                     }
 
                     @Override
@@ -83,7 +87,8 @@ public class ResultsActivity extends AppCompatActivity  {
 
                     @Override
                     public void onComplete() {
-                        _adapter.addVehicleOwners(selectedCarOwners);
+                        results.add(0, results.size());
+                        _adapter.add(results);
                         if (_adapter.getItemCount() > 0) resultsFeedback();
                         else noResultsFeedback();
                     }
@@ -91,6 +96,22 @@ public class ResultsActivity extends AppCompatActivity  {
     }
 
     private void init() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ImageButton backButton = toolbar.findViewById(R.id.backButton);
+        backButton.setVisibility(View.VISIBLE);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(ResultsActivity.this);
+            }
+        });
+        TextView titleTextView = toolbar.findViewById(R.id.toolbarTitle);
+        if (_filter != null) {
+            String title = getString(R.string.results_title, _filter.startYear, _filter.endYear);
+            titleTextView.setText(title);
+        }
+        setSupportActionBar(toolbar);
+
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         _recyclerView = (RecyclerView) findViewById(R.id.resultsRecyclerView);

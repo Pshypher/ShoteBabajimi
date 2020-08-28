@@ -1,176 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ListItemCardViewStyle"
+    android:layout_marginBottom="@dimen/list_item_vertical_margin"
+    android:layout_marginTop="0dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/list_item_margin"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="10dp">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="@dimen/list_item_padding">
 
         <TextView
-            android:id="@+id/nameLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/car_owner_name"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/namesValueTextView"
+            android:id="@+id/namesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/nameLabelTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Scot Hainning" />
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="Adetunji Ojekunle" />
 
         <TextView
-            android:id="@+id/emailLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/email_field"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameLabelTextView" />
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/emailValueTextView"
+            android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/emailLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/namesValueTextView"
-            tools:text="shainning0@so-net.ne.jp" />
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="ojekunleadetunji@gmail.com" />
 
         <TextView
-            android:id="@+id/countryLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/country"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabelTextView" />
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/countryValueTextView"
+            android:id="@+id/countryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/countryLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/emailValueTextView"
-            tools:text="Thailand" />
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="Nigeria" />
 
         <TextView
-            android:id="@+id/carColorYearLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/car_color_year"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/countryLabelTextView" />
+            android:text="@string/model"
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/carColorYearValue"
+            android:id="@+id/modelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/carColorYearLabel"
-            app:layout_constraintTop_toBottomOf="@+id/countryValueTextView"
-            tools:text="Lincoln, Maroon, 1996" />
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="Toyota Camry" />
 
         <TextView
-            android:id="@+id/genderLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/gender_label"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carColorYearLabel" />
+            android:text="@string/color"
+            android:textAllCaps="false"
+            android:textAppearance="@style/PropertyLabelStyle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/colorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:textAppearance="@style/PropertyValueStyle"
+                tools:text="Red" />
+
+            <View
+                android:id="@+id/colorDrawable"
+                android:layout_width="8dp"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/color_drawable"
+                android:backgroundTint="@color/red" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/genderValueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/genderLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/carColorYearValue"
+            android:text="@string/year"
+            android:textAppearance="@style/PropertyLabelStyle" />
+
+        <TextView
+            android:id="@+id/yearTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="2017" />
+
+
+        <TextView
+            style="@style/PropertyLabelStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender_label" />
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
             tools:text="Male" />
 
         <TextView
-            android:id="@+id/jobTitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/job_title"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genderLabelTextView" />
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/jobTitleValue"
+            android:id="@+id/jobTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toEndOf="@+id/jobTitleLabel"
-            app:layout_constraintTop_toBottomOf="@+id/genderValueTextView"
-            tools:text="Staff Accountant III" />
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
+            tools:text="Product Designer" />
 
         <TextView
-            android:id="@+id/bioLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/bio_label"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobTitleLabel" />
+            android:textAppearance="@style/PropertyLabelStyle" />
 
         <TextView
-            android:id="@+id/bioValueTextView"
-            android:layout_width="0dp"
+            android:id="@+id/bioTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/list_item_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bioLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/jobTitleValue"
+            android:layout_marginBottom="@dimen/property_value_margin"
+            android:textAppearance="@style/PropertyValueStyle"
             tools:text="@string/lipsum_text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

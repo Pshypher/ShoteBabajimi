@@ -1,13 +1,12 @@
 package com.example.android.shotebabajimi.utils;
 
-import android.text.TextUtils;
-
 import com.example.android.shotebabajimi.filter.model.Filter;
 import com.example.android.shotebabajimi.results.model.CarOwner;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 
 public class FilterUtils {
@@ -24,6 +23,22 @@ public class FilterUtils {
                 .flatMap(carOwnerObservable ->
                         carOwnerObservable.filter(
                                 carOwner -> test(filter, carOwner)));
+    }
+
+    /**
+     * Returns the number of vehicle owners matching the applied filter
+     * @param filter the applied filter
+     * @param ownersObservable list of vehicle owners
+     */
+    public static Single<Integer> getResultCount(Filter filter, Observable<List<CarOwner>> ownersObservable) {
+        return ownersObservable
+                .map(owners ->
+                        Observable.fromIterable(owners))
+                .flatMap(carOwnerObservable ->
+                        carOwnerObservable.filter(
+                                carOwner -> test(filter, carOwner)))
+                .toList()
+                .map(owners -> owners.size());
     }
 
     public static Boolean test(Filter filter, CarOwner carOwner) {
